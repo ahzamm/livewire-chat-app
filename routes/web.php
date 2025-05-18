@@ -8,4 +8,5 @@ Route::get('/', function () {
 
 
 
-Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::get('/signin', [\App\Http\Controllers\AuthController::class, 'singin'])->name('signin');
+Route::get('/signup', [\App\Http\Controllers\AuthController::class, 'signup'])->name('signup');
