@@ -50,7 +50,7 @@
 
         <p class="mt-10 text-center text-sm/6 text-gray-500">
             Already a member?
-            <a href="{{ route('signin') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">Signin now</a>
+            <a href="{{ route('signin') }}" wire:navigate class="font-semibold text-indigo-600 hover:text-indigo-500">Signin now</a>
         </p>
     </div>
 </div>

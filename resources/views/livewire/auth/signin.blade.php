@@ -19,7 +19,7 @@
                 <div class="flex items-center justify-between">
                     <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
                     <div class="text-sm">
-                        <a href="{{ route('forget-password') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                        <a href="{{ route('forget-password') }}" wire:navigate class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                     </div>
                 </div>
                 <div class="mt-2">
@@ -37,7 +37,7 @@
 
         <p class="mt-10 text-center text-sm/6 text-gray-500">
             Not a member?
-            <a href="{{ route('signup') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">Signup now</a>
+            <a href="{{ route('signup') }}" wire:navigate class="font-semibold text-indigo-600 hover:text-indigo-500">Signup now</a>
         </p>
     </div>
 </div>
