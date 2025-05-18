@@ -13,4 +13,8 @@ class AuthController extends Controller
     public function signup(){
         return view('signup');
     }
+   
+    public function forgetPassword(){
+        return view('forget-password');
+    }
 }
