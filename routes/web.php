@@ -9,5 +9,5 @@ Route::get('/', function () {
 
 
 Route::get('/signin', \App\Livewire\Auth\Signin::class)->name('signin');
-Route::get('/signup', [\App\Http\Controllers\AuthController::class, 'signup'])->name('signup');
-Route::get('/forget-password', [\App\Http\Controllers\AuthController::class, 'forgetPassword'])->name('forget-password');
+Route::get('/signup', \App\Livewire\Auth\Signup::class)->name('signup');
+Route::get('/forget-password', \App\Livewire\Auth\ForgetPassword::class)->name('forget-password');
