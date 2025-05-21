@@ -9,7 +9,17 @@
 </head>
 
 <body class="bg-gray-100 text-gray-900">
-    {{ $slot }}
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <img class="mx-auto h-10 w-auto" src="{{ Vite::asset($logo) }}" alt="Your Company">
+            <x-layouts.guest-heading />
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            {{ $slot }}
+        </div>
+    </div>
+
     @livewireScripts
 </body>
 

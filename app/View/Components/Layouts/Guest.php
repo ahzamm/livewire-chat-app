@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\layouts;
+namespace App\View\Components\Layouts;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,7 @@ class Guest extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layouts.guest');
+        $logo = 'resources/images/whatsapp.svg';
+        return view('components.layouts.guest', compact('logo'));
     }
 }
