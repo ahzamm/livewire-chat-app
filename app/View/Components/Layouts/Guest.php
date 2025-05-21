@@ -5,23 +5,31 @@ namespace App\View\Components\Layouts;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Route;
 
 class Guest extends Component
 {
-    /**
-     * Create a new component instance.
-     */
+    public string $logo;
+    public string $heading;
+    public string $footer;
     public function __construct()
     {
-        //
+        $this->logo = 'resources/images/whatsapp.svg';
+        $this->heading = match (Route::currentRouteName()) {
+            'signin' => 'Sign in to your account',
+            'signup' => 'Sign up to your account',
+            default => '',
+        };
+
+        $this->footer = match (Route::currentRouteName()) {
+            'signin' => 'Not a member? <a href=' . route('signup') . " wire:navigate class=\"font-semibold text-indigo-600 hover:text-indigo-500\">Signup now</a>",
+            'signup' => 'Already a member? <a href=' . route('signin') . ' wire:navigate class="font-semibold text-indigo-600 hover:text-indigo-500">Signin now</a>',
+            default => '',
+        };
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        $logo = 'resources/images/whatsapp.svg';
-        return view('components.layouts.guest', compact('logo'));
+        return view('components.layouts.guest');
     }
 }
