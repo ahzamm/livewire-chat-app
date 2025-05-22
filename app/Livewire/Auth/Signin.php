@@ -31,14 +31,6 @@ class Signin extends Component
         $this->redirectIntended('dashboard');
     }
 
-    public function rules(): array
-    {
-        return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-        ];
-    }
-
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
