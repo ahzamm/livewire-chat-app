@@ -21,6 +21,8 @@ class ResetPassword extends Component
     #[Validate('required|string')]
     public string $password_confirmation = '';
 
+    public string $token = '';
+
     public function resetPassword()
     {
         $this->validate();
