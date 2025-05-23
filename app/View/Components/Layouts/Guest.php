@@ -18,6 +18,8 @@ class Guest extends Component
         $this->heading = match (Route::currentRouteName()) {
             'signin' => 'Sign in to your account',
             'signup' => 'Sign up to your account',
+            'forget-password' => 'Enter Your Email',
+            'password.reset' => 'Reset Your Password',
             default => '',
         };
 
