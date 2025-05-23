@@ -42,5 +42,7 @@ class ResetPassword extends Component
         if ($status != Password::PasswordReset) {
             $this->addError('email', 'Something Went Wrong');
         }
+
+        $this->redirectIntended('signin');
     }
 }
