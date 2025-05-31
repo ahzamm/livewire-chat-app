@@ -18,7 +18,7 @@ class SingleContact extends Component
     {
         $this->avatar = $contact->getFirstMedia() ?? asset(config('constant.default_image'));
         $this->contactName = $contact->name;
-        $this->lastMessageTime = auth()->user()->getLatestMessage($contact->id)->created_at;
+        $this->lastMessageTime = auth()->user()->getLatestMessage($contact->id)->created_at->diffForHumans();
         $this->lastMessage = auth()->user()->getLatestMessage($contact->id)->message;
     }
 
