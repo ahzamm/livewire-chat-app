@@ -63,4 +63,15 @@ class User extends Authenticatable implements HasMedia
     public function getContactList(){
         return $this->belongsToMany(User::class, 'contacts', 'user_id', 'contact_id');
     }
+
+    static function getLatestMessage($userId)
+    {
+        return Message::where(function ($query) use ($userId) {
+            $query->where('sender_id', auth()->user()->id)->where('reciever_id', $userId);
+        })
+            ->orWhere(function ($query) use ($userId) {
+                $query->where('sender_id', $userId)->where('reciever_id', auth()->user()->id);
+            })
+            ->latest()->first();
+    }
 }

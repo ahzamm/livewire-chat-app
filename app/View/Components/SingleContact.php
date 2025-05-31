@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+// use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class SingleContact extends Component
@@ -13,12 +14,12 @@ class SingleContact extends Component
     public string $lastMessageTime = '';
     public string $lastMessage = '';
 
-    public function __construct($avatar, $contactName, $lastMessageTime, $lastMessage)
+    public function __construct(public mixed $contact)
     {
-        $this->avatar = $avatar;
-        $this->contactName = $contactName;
-        $this->lastMessageTime = $lastMessageTime;
-        $this->lastMessage = $lastMessage;
+        $this->avatar = $contact->getFirstMedia() ?? asset(config('constant.default_image'));
+        $this->contactName = $contact->name;
+        $this->lastMessageTime = auth()->user()->getLatestMessage($contact->id)->created_at;
+        $this->lastMessage = auth()->user()->getLatestMessage($contact->id)->message;
     }
 
     public function render(): View|Closure|string
