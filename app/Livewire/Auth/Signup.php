@@ -9,10 +9,16 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithFileUploads;
 
 #[Layout(\App\View\Components\Layouts\Guest::class)]
 class Signup extends Component
 {
+    use WithFileUploads;
+
+    #[Validate('required|image')]
+    public $avatar;
+
     #[Validate('required|string')]
     public string $name = '';
 
@@ -21,7 +27,7 @@ class Signup extends Component
 
     #[Validate('required|string|confirmed')]
     public string $password = '';
-    
+
     #[Validate('required|string')]
     public string $password_confirmation = '';
 
@@ -34,6 +40,11 @@ class Signup extends Component
             'email' => $this->email,
             'password' => Hash::make($this->password),
         ]);
+
+        $user
+            ->addMedia($this->avatar->getRealPath())
+            ->usingFileName($this->avatar->getClientOriginalName())
+            ->toMediaCollection('avatars');
 
         event(new Registered($user));
 
