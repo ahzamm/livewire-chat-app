@@ -9,7 +9,21 @@
 </head>
 
 <body>
-            {{ $slot }}
+    <div>
+        <div class="w-full h-32 bg-white"></div>
+        <div class="container mx-auto" style="margin-top: -128px;">
+            <div class="py-6 h-screen">
+                <div class="flex h-full">
+
+                    <!-- Left -->
+                   <livewire:contact-list />
+
+                    <!-- Right -->
+                    {{ $slot }}
+                </div>
+            </div>
+        </div>
+    </div>
 
     @livewireScripts
 </body>
