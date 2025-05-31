@@ -52,7 +52,7 @@
     <!-- Contacts -->
     <div class="bg-grey-lighter flex-1 overflow-auto">
         @foreach ($contacts as $contact)
-            <x-single-contact :contactName="$contact->name" lastMessageTime="" lastMessage="" />
+            <x-single-contact :avatar="$contact->getFirstMedia()" :contactName="$contact->name" lastMessageTime="" lastMessage="" />
         @endforeach
     </div>
 
