@@ -21,11 +21,26 @@
                     </path>
                 </svg>
             </div>
-            <div class="ml-4">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="white" d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"></path>
-                </svg>
+            <div x-data="{ open: false }" class="relative ml-4">
+                <!-- SVG Trigger -->
+                <div @click="open = !open" class="cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="white" d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"></path>
+                    </svg>
+                </div>
+
+                <!-- Dropdown Menu -->
+                <div
+                    x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-50" x-transition>
+                    <form method="POST" action="{{ route('signout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </div>
+
         </div>
     </div>
 
