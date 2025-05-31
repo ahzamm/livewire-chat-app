@@ -11,7 +11,7 @@ use Livewire\Component;
 #[Layout(\App\View\Components\Layouts\App::class)]
 class Dashboard extends Component
 {
-    public string $userId = '';
+    public int $userId = 2;
     public Collection $messages;
 
     public function mount(): void

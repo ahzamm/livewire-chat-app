@@ -5,11 +5,11 @@
 
     <x-chat-window>
         @foreach ($messages as $message)
-            @if ($message->sender_id == auth()->id && $message->reciever_id == $user->id)
+            @if ($message->sender_id == auth()->user()->id && $message->reciever_id == $userId)
                 <x-sent-message>
                     {{ $message->message }}
                 </x-sent-message>
-            @elseif ($message->sender_id == $user->id && $message->reciever_id == auth()->id)
+            @elseif ($message->sender_id == $userId && $message->reciever_id == auth()->user()->id)
                 <x-recieved-message>
                     {{ $message->message }}
                 </x-recieved-message>
