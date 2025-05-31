@@ -9,7 +9,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout(\App\View\Components\Layouts\App::class)]
-class Dashboard extends Component
+class ChatWindow extends Component
 {
     public int $userId = 2;
     public Collection $messages;
@@ -21,6 +21,6 @@ class Dashboard extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard');
+        return view('livewire.chat-window');
     }
 }
