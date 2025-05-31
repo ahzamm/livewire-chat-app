@@ -8,6 +8,16 @@ use Livewire\Component;
 class ContactList extends Component
 {
     public Collection $contacts;
+    public string $contactSearch;
+
+    public function updatedContactSearch()
+    {
+        $this->contacts = auth()
+            ->user()
+            ->getContactList()
+            ->where('users.name', 'like', '%' . $this->contactSearch . '%')
+            ->get();
+    }
 
     public function mount()
     {
