@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class SingleContact extends Component
 {
+    public string $avatar = '';
     public string $contactName = '';
     public string $lastMessageTime = '';
     public string $lastMessage = '';
 
-    public function __construct($contactName, $lastMessageTime, $lastMessage)
+    public function __construct($avatar, $contactName, $lastMessageTime, $lastMessage)
     {
+        $this->avatar = $avatar;
         $this->contactName = $contactName;
         $this->lastMessageTime = $lastMessageTime;
         $this->lastMessage = $lastMessage;

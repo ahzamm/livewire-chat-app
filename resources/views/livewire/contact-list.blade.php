@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center bg-[#449388]">
         <div>
-            <img class="w-10 h-10 rounded-full" src="{{ auth()->user()->getFirstMedia() }}" />
+            <img class="w-10 h-10 rounded-full" src="{{ auth()->user()->getFirstMedia() ?? asset(config('constant.default_image')) }}" />
         </div>
 
         <div class="flex">
@@ -52,7 +52,7 @@
     <!-- Contacts -->
     <div class="bg-grey-lighter flex-1 overflow-auto">
         @foreach ($contacts as $contact)
-            <x-single-contact :avatar="$contact->getFirstMedia()" :contactName="$contact->name" lastMessageTime="" lastMessage="" />
+            <x-single-contact :avatar="$contact->getFirstMedia() ?? asset(config('constant.default_image'))" :contactName="$contact->name" lastMessageTime="" lastMessage="" />
         @endforeach
     </div>
 
