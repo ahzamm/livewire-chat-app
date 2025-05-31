@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center bg-[#449388]">
         <div>
-            <img class="w-10 h-10 rounded-full" src="http://andressantibanez.com/res/avatar.png" />
+            <img class="w-10 h-10 rounded-full" src="{{ auth()->user()->getFirstMedia() }}" />
         </div>
 
         <div class="flex">
