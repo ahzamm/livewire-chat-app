@@ -17,7 +17,8 @@ class ChatWindow extends Component
 
     public function fetchMessages($contactId)
     {
-        dd($contactId);
+        $this->contactId = $contactId;
+        $this->messages = Message::getAllChat($contactId);
     }
 
     public function mount(): void
