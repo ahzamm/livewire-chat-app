@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class SingleContact extends Component
 {
+    public string $contactId = '';
     public string $avatar = '';
     public string $contactName = '';
     public string $lastMessageTime = '';
@@ -15,6 +16,7 @@ class SingleContact extends Component
 
     public function __construct(public mixed $contact)
     {
+        $this->contactId = $contact->id;
         $this->avatar = $contact->getFirstMedia() ?? asset(config('constant.default_image'));
         $this->contactName = $contact->name;
         $this->lastMessageTime = auth()->user()->getLatestMessage($contact->id)->created_at->diffForHumans();
