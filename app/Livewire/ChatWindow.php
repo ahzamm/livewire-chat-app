@@ -2,8 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Message;
-use Illuminate\Support\Collection;
+use App\Services\MessageService;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -12,18 +11,13 @@ use Livewire\Component;
 class ChatWindow extends Component
 {
     public string $contactId = '';
-    public Collection $messages;
+    public $messages = [];
     protected $listeners = ['contact-clicked' => 'fetchMessages'];
 
-    public function fetchMessages($contactId)
+    public function fetchMessages($contactId, MessageService $messageService): void
     {
         $this->contactId = $contactId;
-        $this->messages = Message::getAllChat($contactId);
-    }
-
-    public function mount(): void
-    {
-        $this->messages = Message::getAllChat($this->contactId);
+        $this->messages = $messageService->getChat($this->contactId);
     }
 
     public function render(): View
