@@ -82,6 +82,11 @@
         <div class="flex-1 mx-4">
             <input class="w-full border rounded px-2 py-2" type="text" />
         </div>
+        <div class="mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#263238" fill-opacity=".45" d="M2.01 21.99l20.99-9.99L2.01 2.01v7.99l15 2-15 2z" />
+            </svg>
+        </div>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                 <path fill="#263238" fill-opacity=".45"
