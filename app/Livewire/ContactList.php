@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Services\UserService;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -19,9 +20,9 @@ class ContactList extends Component
             ->get();
     }
 
-    public function mount()
+    public function mount(UserService $userService)
     {
-        $this->contacts = auth()->user()->getContactList()->get();
+        $this->contacts = $userService->getContactList();
     }
 
     public function render()
