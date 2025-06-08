@@ -11,13 +11,9 @@ class ContactList extends Component
     public Collection $contacts;
     public string $contactSearch;
 
-    public function updatedContactSearch()
+    public function updatedContactSearch(UserService $userService)
     {
-        $this->contacts = auth()
-            ->user()
-            ->getContactList()
-            ->where('users.name', 'like', '%' . $this->contactSearch . '%')
-            ->get();
+        $this->contacts = $userService->contactSearch($this->contactSearch);
     }
 
     public function mount(UserService $userService)

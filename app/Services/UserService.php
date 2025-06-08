@@ -19,4 +19,9 @@ class UserService
     {
         return $this->userRepository->getLatestMessage($id);
     }
+    
+    public function contactSearch(string $searchString): Collection
+    {
+        return $this->userRepository->contactSearch($searchString);
+    }
 }

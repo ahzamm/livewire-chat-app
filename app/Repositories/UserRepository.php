@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\UserRepositoryInterface;
 use App\Models\Message;
+use App\Services\UserService;
 use Illuminate\Support\Collection;
 
 class UserRepository implements UserRepositoryInterface
@@ -23,5 +24,18 @@ class UserRepository implements UserRepositoryInterface
             })
             ->latest()
             ->first();
+    }
+
+    public function contactSearch(string $searchString): ?Collection
+    {
+        $contacts = $this->getContactList();
+
+        if(!$contacts){
+            return null;
+        }
+
+        return $contacts->filter(function($contact) use ($searchString) {
+            return str_contains(strtolower($contact->name), strtolower($searchString));
+        });
     }
 }
