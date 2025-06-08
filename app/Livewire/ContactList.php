@@ -20,9 +20,4 @@ class ContactList extends Component
     {
         $this->contacts = $userService->getContactList();
     }
-
-    public function render()
-    {
-        return view('livewire.contact-list');
-    }
 }

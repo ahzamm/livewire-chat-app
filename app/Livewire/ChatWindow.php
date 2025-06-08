@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Services\MessageService;
-use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -18,10 +17,5 @@ class ChatWindow extends Component
     {
         $this->contactId = $contactId;
         $this->messages = $messageService->getChat($this->contactId);
-    }
-
-    public function render(): View
-    {
-        return view('livewire.chat-window');
     }
 }
