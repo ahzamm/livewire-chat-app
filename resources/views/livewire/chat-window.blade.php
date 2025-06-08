@@ -71,7 +71,6 @@
                 @if ($lastDate !== $currentDate)
                     @php
                         $formattedDate = $message->created_at->isToday() ? 'Today' : ($message->created_at->isYesterday() ? 'Yesterday' : $message->created_at->format('F j, Y'));
-                        // dd($formattedDate);
                     @endphp
                     <x-new-day :date="$formattedDate" />
                     @php $lastDate = $currentDate; @endphp
