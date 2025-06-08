@@ -60,7 +60,22 @@
                 </div>
             </div>
 
+            @php
+                $lastDate = null;
+            @endphp
+
             @foreach ($messages as $message)
+                @php
+                    $currentDate = $message->created_at->toDateString();
+                @endphp
+                @if ($lastDate !== $currentDate)
+                    @php
+                        $formattedDate = $message->created_at->isToday() ? 'Today' : ($message->created_at->isYesterday() ? 'Yesterday' : $message->created_at->format('F j, Y'));
+                        // dd($formattedDate);
+                    @endphp
+                    <x-new-day :date="$formattedDate" />
+                    @php $lastDate = $currentDate; @endphp
+                @endif
                 @if ($message->sender_id == auth()->user()->id && $message->reciever_id == $contactId)
                     <x-sent-message :sentMessage="$message->message" :sentAt="$message->created_at" />
                 @elseif ($message->sender_id == $contactId && $message->reciever_id == auth()->user()->id)
