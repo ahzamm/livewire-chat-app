@@ -20,9 +20,14 @@ class ChatWindow extends Component
         $this->messages = $messageService->getChat($this->contactId);
     }
 
+    public function resetContact()
+    {
+        $this->contactId = '';
+    }
+
     public function render(): View
     {
-        if($this->contactId === ''){
+        if ($this->contactId === '') {
             return view('livewire.empty-chat-window');
         }
         return view('livewire.chat-window');

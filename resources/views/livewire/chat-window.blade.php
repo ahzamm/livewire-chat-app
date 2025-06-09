@@ -1,5 +1,5 @@
 <!-- Right -->
-<div class="w-2/3 border flex flex-col">
+<div x-data @keydown.escape.window="$wire.resetContact()" class="w-2/3 border flex flex-col">
 
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center bg-[#449388]">
@@ -43,8 +43,8 @@
     <!-- Messages -->
     <div class="flex-1 overflow-auto" style="background-color: #DAD3CC">
         <div class="py-6 px-3">
-            
-           <x-encryption-notice />
+
+            <x-encryption-notice />
 
             @php
                 $lastDate = null;
