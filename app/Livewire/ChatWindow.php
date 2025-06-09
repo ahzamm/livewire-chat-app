@@ -33,7 +33,8 @@ class ChatWindow extends Component
             'sender_id' => auth()->user()->id,
             'reciever_id' => $this->contactId,
         ];
-        $messageService->store($data);
+        $newMessage = $messageService->store($data);
+        $this->messages[] = $newMessage;
         $this->message = '';
     }
 
