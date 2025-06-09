@@ -42,23 +42,9 @@
 
     <!-- Messages -->
     <div class="flex-1 overflow-auto" style="background-color: #DAD3CC">
-        <div class="py-2 px-3">
-
-            <div class="flex justify-center mb-2">
-                <div class="rounded py-2 px-4" style="background-color: #DDECF2">
-                    <p class="text-sm uppercase">
-                        February 20, 2018
-                    </p>
-                </div>
-            </div>
-
-            <div class="flex justify-center mb-4">
-                <div class="rounded py-2 px-4" style="background-color: #FCF4CB">
-                    <p class="text-xs">
-                        Messages to this chat and calls are now secured with end-to-end encryption. Tap for more info.
-                    </p>
-                </div>
-            </div>
+        <div class="py-6 px-3">
+            
+           <x-encryption-notice />
 
             @php
                 $lastDate = null;
