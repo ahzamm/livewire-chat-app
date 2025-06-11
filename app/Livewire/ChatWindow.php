@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\MessageSent;
 use App\Services\MessageService;
 use Livewire\Attributes\Layout;
 use Illuminate\View\View;
@@ -36,6 +37,8 @@ class ChatWindow extends Component
         $newMessage = $messageService->store($data);
         $this->messages[] = $newMessage;
         $this->message = '';
+
+        MessageSent::dispatch($newMessage);
     }
 
     public function render(): View

@@ -25,4 +25,8 @@ class MessageRepository implements MessageRepositoryInterface
     public function delete(int $id): bool{
         return Message::find($id)->delete();
     }
+
+    public function findMessage(int $id): Message{
+        return Message::findOrFail($id);
+    }
 }

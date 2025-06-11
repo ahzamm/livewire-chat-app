@@ -12,4 +12,6 @@ interface MessageRepositoryInterface
     public function store(array $data): ?Message;
 
     public function delete(int $id): bool;
+
+    public function findMessage(int $id) : ?Message;
 }
