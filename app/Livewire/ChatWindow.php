@@ -7,6 +7,7 @@ use App\Services\MessageService;
 use Livewire\Attributes\Layout;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 #[Layout(\App\View\Components\Layouts\App::class)]
 class ChatWindow extends Component
@@ -14,7 +15,7 @@ class ChatWindow extends Component
     public string $contactId = '';
     public string $message = '';
     public $messages = [];
-    protected $listeners = ['contact-clicked' => 'fetchMessages'];
+    protected $listeners = ['contact-clicked' => 'fetchMessages', 'echo-private:one_to_one_chat.8,MessageSent' => 'recieveMessage'];
 
     public function fetchMessages($contactId, MessageService $messageService): void
     {
@@ -35,10 +36,16 @@ class ChatWindow extends Component
             'reciever_id' => $this->contactId,
         ];
         $newMessage = $messageService->store($data);
+
+        broadcast(new MessageSent($newMessage));
+
         $this->messages[] = $newMessage;
         $this->message = '';
+    }
 
-        MessageSent::dispatch($newMessage);
+    public function recieveMessage($eventData)
+    {
+        dd($eventData);
     }
 
     public function render(): View
