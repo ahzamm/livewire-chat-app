@@ -15,7 +15,9 @@ class ChatWindow extends Component
     public string $contactId = '';
     public string $message = '';
     public $messages = [];
-    protected $listeners = ['contact-clicked' => 'fetchMessages', 'echo-private:one_to_one_chat.8,MessageSent' => 'recieveMessage'];
+    protected $listeners = [
+        'contact-clicked' => 'fetchMessages',
+        'recieveMessage' => 'recieveMessage',];
 
     public function fetchMessages($contactId, MessageService $messageService): void
     {
@@ -30,6 +32,7 @@ class ChatWindow extends Component
 
     public function sendMessage(MessageService $messageService)
     {
+        // dd($this->contactId);
         $data = [
             'message' => $this->message,
             'sender_id' => auth()->user()->id,
@@ -43,9 +46,9 @@ class ChatWindow extends Component
         $this->message = '';
     }
 
-    public function recieveMessage($eventData)
+    public function recieveMessage($recievedMessage)
     {
-        dd($eventData);
+        dd($recievedMessage);
     }
 
     public function render(): View

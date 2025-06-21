@@ -96,3 +96,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const contactId = @json($contactId); // from blade variable
+
+        // If already connected to another contact, leave that channel
+        if (window.currentContactId && window.currentContactId !== contactId) {
+            window.Echo.leave(`private-one_to_one_chat.${window.currentContactId}`);
+        }
+
+        // Save current
+        window.currentContactId = contactId;
+
+        // Join the new channel
+        window.Echo.private(`one_to_one_chat.${contactId}`)
+            .listen('MessageSent', (e) => {
+                console.log('Message Received:', e);
+                // You can manipulate the DOM here to append the message
+            });
+    });
+</script>
+

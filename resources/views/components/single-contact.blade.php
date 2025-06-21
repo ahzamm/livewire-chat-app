@@ -1,6 +1,22 @@
-<div
-    x-data @click="Livewire.dispatch('contact-clicked', {'contactId': {{ $contactId }}})" class="bg-white px-3 flex items-center hover:bg-grey-lighter cursor-pointer mb-3"
-    wire:key='{{ $contactId }}'>
+<div x-data="{
+    {{-- contactId: {{ auth()->user()->id }}, --}}
+    contactId: {{ $contactId }},
+    subscribeToChannel() {
+        if (window.EchoChannel === `private-one_to_one_chat.${this.contactId}`) return;
+
+        if (window.EchoChannel) {
+            window.Echo.leave(window.EchoChannel);
+        }
+
+        window.EchoChannel = `one_to_one_chat.{{ auth()->user()->id }}`;
+        window.Echo.private(window.EchoChannel)
+            .listen('MessageSent', (e) => {
+                Livewire.dispatch('recieveMessage', { recievedMessage: e });
+            });
+
+        Livewire.dispatch('contact-clicked', { contactId: this.contactId });
+    }
+}" x-on:click="subscribeToChannel()" class="bg-white px-3 flex items-center hover:bg-grey-lighter cursor-pointer mb-3" wire:key="{{ $contactId }}">
     <div>
         <img class="h-12 w-12 rounded-full" src="{{ $avatar }}" />
     </div>
