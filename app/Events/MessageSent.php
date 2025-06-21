@@ -28,7 +28,6 @@ class MessageSent implements ShouldBroadcastNow
     public function __construct(Message $message)
     {
         $this->message = $message;
-        \Log::info($message->reciever_id);
     }
 
     /**
@@ -44,10 +43,7 @@ class MessageSent implements ShouldBroadcastNow
     public function broadcastWith(): array
     {
         return [
-            'id' => $this->message->id,
-            'message' => $this->message->message,
-            'sender_id' => $this->message->sender_id,
-            'reciever_id' => $this->message->reciever_id,
+            'id' => $this->message->id
         ];
     }
 

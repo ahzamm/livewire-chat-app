@@ -32,7 +32,6 @@ class ChatWindow extends Component
 
     public function sendMessage(MessageService $messageService)
     {
-        // dd($this->contactId);
         $data = [
             'message' => $this->message,
             'sender_id' => auth()->user()->id,
@@ -46,9 +45,10 @@ class ChatWindow extends Component
         $this->message = '';
     }
 
-    public function recieveMessage($recievedMessage)
+    public function recieveMessage(MessageService $messageService, $recievedMessage)
     {
-        dd($recievedMessage);
+        $message = $messageService->findMessage($recievedMessage['id']); 
+        $this->messages[] = $message;
     }
 
     public function render(): View
