@@ -3,9 +3,7 @@
 namespace App\Events;
 
 use App\Models\Message;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -40,15 +38,14 @@ class MessageSent implements ShouldBroadcastNow
         return [new PrivateChannel('one_to_one_chat.' . $this->message->reciever_id)];
     }
 
+    /**
+     * Formated message data
+     * @return array{id: int}
+     */
     public function broadcastWith(): array
     {
         return [
-            'id' => $this->message->id
+            'id' => (int) $this->message->id
         ];
     }
-
-    // public function broadcastAs(): string
-    // {
-    //     return 'one_to_one_chat';
-    // }
 }
