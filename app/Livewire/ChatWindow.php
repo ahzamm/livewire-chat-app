@@ -25,6 +25,12 @@ class ChatWindow extends Component
     public string $contactName = '';
 
     /**
+     * Current contact avatar
+     * @var string
+     */
+    public string $contactAvatar = '';
+
+    /**
      * Current Typed Message
      * @var string
      */
@@ -53,11 +59,10 @@ class ChatWindow extends Component
      */
     public function fetchMessages($contactId, UserService $userService, MessageService $messageService): void
     {
-
         $this->contactId = $contactId;
         $this->contactName = $userService->getContact((int) $this->contactId)->name;
+        $this->contactAvatar = $userService->getContact((int) $this->contactId)->getFirstMedia() ?? asset(config('constant.default_image'));
         $this->messages = $messageService->getChat($this->contactId);
-        // dd($this->contactId);
     }
 
     /**

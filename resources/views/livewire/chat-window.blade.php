@@ -4,7 +4,7 @@
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center bg-[#449388]">
         <div class="flex items-center">
             <div>
-                <img class="w-10 h-10 rounded-full" src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg" />
+                <img class="w-10 h-10 rounded-full" src="{{ $contactAvatar }}" />
             </div>
             <div class="ml-4">
                 <p class="text-grey-darkest">

@@ -1,5 +1,4 @@
 <div x-data="{
-    {{-- contactId: {{ auth()->user()->id }}, --}}
     contactId: {{ $contactId }},
     subscribeToChannel() {
         if (window.EchoChannel === `private-one_to_one_chat.${this.contactId}`) return;
