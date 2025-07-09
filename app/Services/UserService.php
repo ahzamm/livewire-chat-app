@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\UserRepositoryInterface;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Support\Collection;
 
 class UserService
@@ -23,5 +24,10 @@ class UserService
     public function contactSearch(string $searchString): Collection
     {
         return $this->userRepository->contactSearch($searchString);
+    }
+   
+    public function getContact(int $contactId): User
+    {
+        return $this->userRepository->getContact($contactId);
     }
 }

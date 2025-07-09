@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Events\MessageSent;
 use App\Services\MessageService;
+use App\Services\UserService;
 use Livewire\Attributes\Layout;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -16,6 +17,12 @@ class ChatWindow extends Component
      * @var string
      */
     public string $contactId = '';
+
+    /**
+     * Current contact name
+     * @var string
+     */
+    public string $contactName = '';
 
     /**
      * Current Typed Message
@@ -44,10 +51,13 @@ class ChatWindow extends Component
      * @param \App\Services\MessageService $messageService
      * @return void
      */
-    public function fetchMessages($contactId, MessageService $messageService): void
+    public function fetchMessages($contactId, UserService $userService, MessageService $messageService): void
     {
+
         $this->contactId = $contactId;
+        $this->contactName = $userService->getContact((int) $this->contactId)->name;
         $this->messages = $messageService->getChat($this->contactId);
+        // dd($this->contactId);
     }
 
     /**
@@ -91,10 +101,12 @@ class ChatWindow extends Component
         $this->messages[] = $message;
     }
 
-    public function hydrate()
-    {
-        $this->dispatch('scrollToBottom');
-    }
+    // public function hydrate(UserService $messageService)
+    // {
+    //     dd($this->contactId);
+    //     $this->contactName = $messageService->getContact((int) $this->contactId);
+    //     $this->dispatch('scrollToBottom');
+    // }
 
     /**
      * render the view

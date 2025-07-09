@@ -4,8 +4,8 @@ namespace App\Repositories;
 
 use App\Interfaces\UserRepositoryInterface;
 use App\Models\Message;
-use App\Services\UserService;
 use Illuminate\Support\Collection;
+use App\Models\User;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -30,12 +30,17 @@ class UserRepository implements UserRepositoryInterface
     {
         $contacts = $this->getContactList();
 
-        if(!$contacts){
+        if (!$contacts) {
             return null;
         }
 
-        return $contacts->filter(function($contact) use ($searchString) {
+        return $contacts->filter(function ($contact) use ($searchString) {
             return str_contains(strtolower($contact->name), strtolower($searchString));
         });
+    }
+
+    public function getContact(int $contactId): User
+    {
+        return User::find($contactId);
     }
 }

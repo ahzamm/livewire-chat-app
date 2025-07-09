@@ -8,11 +8,11 @@
             </div>
             <div class="ml-4">
                 <p class="text-grey-darkest">
-                    New Movie! Expendables 4
+                    {{ $contactName }}
                 </p>
-                <p class="text-grey-darker text-xs mt-1">
+                {{-- <p class="text-grey-darker text-xs mt-1">
                     Andrés, Tom, Harrison, Arnold, Sylvester
-                </p>
+                </p> --}}
             </div>
         </div>
 
@@ -98,14 +98,14 @@
 </div>
 
 @script
-<script>
-    Livewire.on('scrollToBottom', () => {
-        setTimeout(() => {
-            const el = document.querySelector('[x-ref="container"]');
-            if (el) {
-                el.scrollTop = el.scrollHeight;
-            }
-        }, 1000);
-    });
-</script>
+    <script>
+        Livewire.on('scrollToBottom', () => {
+            setTimeout(() => {
+                const el = document.querySelector('[x-ref="container"]');
+                if (el) {
+                    el.scrollTop = el.scrollHeight;
+                }
+            }, 1000);
+        });
+    </script>
 @endscript
