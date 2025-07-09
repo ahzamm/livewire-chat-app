@@ -91,15 +91,17 @@ class ChatWindow extends Component
         $this->messages[] = $message;
     }
 
+    public function hydrate()
+    {
+        $this->dispatch('scrollToBottom');
+    }
+
     /**
      * render the view
      * @return \Illuminate\Contracts\View\View
      */
     public function render(): View
     {
-
-        $this->dispatch('scrollToBottom');
-
         if ($this->contactId === '') {
             return view('livewire.empty-chat-window');
         }

@@ -98,13 +98,14 @@
 </div>
 
 @script
-    <script>
-        Livewire.on('scrollToBottom', () => {
-            console.log('event fired');
+<script>
+    Livewire.on('scrollToBottom', () => {
+        setTimeout(() => {
             const el = document.querySelector('[x-ref="container"]');
             if (el) {
                 el.scrollTop = el.scrollHeight;
             }
-        });
-    </script>
+        }, 1000);
+    });
+</script>
 @endscript
