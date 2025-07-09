@@ -12,10 +12,9 @@
             .listen('MessageSent', (e) => {
                 Livewire.dispatch('recieveMessage', { recievedMessage: e });
             });
-
-        Livewire.dispatch('contact-clicked', { contactId: this.contactId });
     }
-}" x-on:click="subscribeToChannel()" class="bg-white px-3 flex items-center hover:bg-grey-lighter cursor-pointer mb-3" wire:key="{{ $contactId }}">
+}" x-on:click="subscribeToChannel(); Livewire.dispatch('contact-clicked', { contactId: contactId });"
+    class="bg-white px-3 flex items-center hover:bg-grey-lighter cursor-pointer mb-3" wire:key="{{ $contactId }}">
     <div>
         <img class="h-12 w-12 rounded-full" src="{{ $avatar }}" />
     </div>
