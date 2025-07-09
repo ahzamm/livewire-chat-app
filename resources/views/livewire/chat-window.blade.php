@@ -1,6 +1,5 @@
 <!-- Right -->
-<div x-data @keydown.escape.window="$wire.resetContact()" class="w-2/3 border flex flex-col">
-
+<div @keydown.escape.window="$wire.resetContact()" class="w-2/3 border flex flex-col">
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center bg-[#449388]">
         <div class="flex items-center">
@@ -41,7 +40,7 @@
     </div>
 
     <!-- Messages -->
-    <div class="flex-1 overflow-auto" style="background-color: #DAD3CC">
+    <div class="flex-1 overflow-auto" style="background-color: #DAD3CC" x-ref="container">
         <div class="py-6 px-3">
 
             <x-encryption-notice />
@@ -95,26 +94,17 @@
             </svg>
         </div>
     </div>
+
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const contactId = @json($contactId); // from blade variable
-
-        // If already connected to another contact, leave that channel
-        if (window.currentContactId && window.currentContactId !== contactId) {
-            window.Echo.leave(`private-one_to_one_chat.${window.currentContactId}`);
-        }
-
-        // Save current
-        window.currentContactId = contactId;
-
-        // Join the new channel
-        window.Echo.private(`one_to_one_chat.${contactId}`)
-            .listen('MessageSent', (e) => {
-                console.log('Message Received:', e);
-                // You can manipulate the DOM here to append the message
-            });
-    });
-</script>
-
+@script
+    <script>
+        Livewire.on('scrollToBottom', () => {
+            console.log('event fired');
+            const el = document.querySelector('[x-ref="container"]');
+            if (el) {
+                el.scrollTop = el.scrollHeight;
+            }
+        });
+    </script>
+@endscript

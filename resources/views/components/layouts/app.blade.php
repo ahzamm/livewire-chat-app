@@ -26,6 +26,18 @@
     </div>
 
     @livewireScripts
+    {{-- <script>
+        document.addEventListener('livewire:load', () => {
+            console.log('Livewire message processed');
+            Livewire.hook('message.processed', (message, component) => {
+                const el = document.querySelector('[x-ref="container"]');
+                if (el) {
+                    el.scrollTop = el.scrollHeight;
+                }
+            })
+        })
+    </script> --}}
+
 </body>
 
 </html>

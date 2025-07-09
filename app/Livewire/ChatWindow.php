@@ -97,6 +97,9 @@ class ChatWindow extends Component
      */
     public function render(): View
     {
+
+        $this->dispatch('scrollToBottom');
+
         if ($this->contactId === '') {
             return view('livewire.empty-chat-window');
         }
