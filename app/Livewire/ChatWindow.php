@@ -63,6 +63,8 @@ class ChatWindow extends Component
         $this->contactName = $userService->getContact((int) $this->contactId)->name;
         $this->contactAvatar = $userService->getContact((int) $this->contactId)->getFirstMedia() ?? asset(config('constant.default_image'));
         $this->messages = $messageService->getChat($this->contactId);
+
+        $this->dispatch('scrollToBottom');
     }
 
     /**
@@ -92,6 +94,8 @@ class ChatWindow extends Component
 
         $this->messages[] = $newMessage;
         $this->message = '';
+
+        $this->dispatch('scrollToBottom');
     }
 
     /**
@@ -104,14 +108,9 @@ class ChatWindow extends Component
     {
         $message = $messageService->findMessage($recievedMessage['id']);
         $this->messages[] = $message;
-    }
 
-    // public function hydrate(UserService $messageService)
-    // {
-    //     dd($this->contactId);
-    //     $this->contactName = $messageService->getContact((int) $this->contactId);
-    //     $this->dispatch('scrollToBottom');
-    // }
+        $this->dispatch('scrollToBottom');
+    }
 
     /**
      * render the view

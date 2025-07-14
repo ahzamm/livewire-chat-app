@@ -63,9 +63,10 @@
                 @if ($message->sender_id == auth()->user()->id && $message->reciever_id == $contactId)
                     <x-sent-message :sentMessage="$message->message" :sentAt="$message->created_at" />
                 @elseif ($message->sender_id == $contactId && $message->reciever_id == auth()->user()->id)
-                    <x-recieved-message :contactName="'Test Contact'" :recievedAt="$message->created_at" :recievedMessage="$message->message" />
+                    <x-recieved-message :contactName="$contactName" :recievedAt="$message->created_at" :recievedMessage="$message->message" />
                 @endif
             @endforeach
+            {{-- <x-sent-voice-message /> --}}
         </div>
     </div>
 
@@ -105,7 +106,7 @@
                 if (el) {
                     el.scrollTop = el.scrollHeight;
                 }
-            }, 1000);
+            });
         });
     </script>
 @endscript
