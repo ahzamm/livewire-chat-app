@@ -52,7 +52,7 @@
     <!-- Contacts -->
     <div class="bg-grey-lighter flex-1 overflow-auto">
         @foreach ($contacts as $contact)
-            <x-single-contact :contact="$contact" />
+            <livewire:contact-item :contact="$contact" :wire:key="'contact-'.$contact->id" />
         @endforeach
     </div>
 

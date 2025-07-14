@@ -96,6 +96,7 @@ class ChatWindow extends Component
         $this->message = '';
 
         $this->dispatch('scrollToBottom');
+        $this->dispatchTo("contact-item", 'messageUpdated', $this->contactId);
     }
 
     /**
@@ -110,6 +111,7 @@ class ChatWindow extends Component
         $this->messages[] = $message;
 
         $this->dispatch('scrollToBottom');
+        $this->dispatchTo("contact-item", 'messageUpdated', $this->contactId);
     }
 
     /**
