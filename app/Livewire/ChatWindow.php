@@ -85,7 +85,7 @@ class ChatWindow extends Component
     {
         $data = [
             'message' => $this->message,
-            'sender_id' => auth()->user()->id,
+            'sender_id' => authUser()->id,
             'reciever_id' => $this->contactId,
         ];
         $newMessage = $messageService->store($data);
@@ -96,7 +96,7 @@ class ChatWindow extends Component
         $this->message = '';
 
         $this->dispatch('scrollToBottom');
-        $this->dispatchTo("contact-item", 'messageUpdated', $this->contactId);
+        $this->dispatch('messageUpdated', $this->contactId)->to(ContactItem::class);
     }
 
     /**
@@ -111,7 +111,7 @@ class ChatWindow extends Component
         $this->messages[] = $message;
 
         $this->dispatch('scrollToBottom');
-        $this->dispatchTo("contact-item", 'messageUpdated', $this->contactId);
+        $this->dispatch('messageUpdated', $this->contactId)->to(ContactItem::class);
     }
 
     /**

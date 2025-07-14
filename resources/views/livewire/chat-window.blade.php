@@ -60,9 +60,9 @@
                     <x-new-day :date="$formattedDate" />
                     @php $lastDate = $currentDate; @endphp
                 @endif
-                @if ($message->sender_id == auth()->user()->id && $message->reciever_id == $contactId)
+                @if ($message->sender_id == authUser()->id && $message->reciever_id == $contactId)
                     <x-sent-message :sentMessage="$message->message" :sentAt="$message->created_at" />
-                @elseif ($message->sender_id == $contactId && $message->reciever_id == auth()->user()->id)
+                @elseif ($message->sender_id == $contactId && $message->reciever_id == authUser()->id)
                     <x-recieved-message :contactName="$contactName" :recievedAt="$message->created_at" :recievedMessage="$message->message" />
                 @endif
             @endforeach

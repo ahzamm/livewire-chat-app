@@ -26,17 +26,17 @@ class ContactItem extends Component
 
     public function maybeRefresh($id)
     {
-        if ($this->contact->id === $id) {
+        if ($this->contactId === $id) {
             $this->refreshLastMessage();
         }
     }
 
     public function refreshLastMessage()
     {
-        $message = $this->contact->messages()->latest()->first();
+        $userService = app(UserService::class);
 
-        $this->lastMessage = $message->body ?? '';
-        $this->lastMessageTime = optional($message->created_at)->diffForHumans() ?? '';
+        $this->lastMessageTime = $userService->getLatestMessage($this->contactId)->created_at->diffForHumans();
+        $this->lastMessage = $userService->getLatestMessage($this->contactId)->message;
     }
 
     public function render()

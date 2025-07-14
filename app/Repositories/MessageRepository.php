@@ -10,10 +10,10 @@ class MessageRepository implements MessageRepositoryInterface
 {
     public function getChatWithContact(int $id): Collection{
         return Message::where(function ($query) use ($id) {
-            $query->where('sender_id', auth()->user()->id)->where('reciever_id', $id);
+            $query->where('sender_id', authUser()->id)->where('reciever_id', $id);
         })
             ->orWhere(function ($query) use ($id) {
-                $query->where('sender_id', $id)->where('reciever_id', auth()->user()->id);
+                $query->where('sender_id', $id)->where('reciever_id', authUser()->id);
             })
             ->get();
     }

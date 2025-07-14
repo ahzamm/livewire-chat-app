@@ -11,16 +11,16 @@ class UserRepository implements UserRepositoryInterface
 {
     public function getContactList(): ?Collection
     {
-        return auth()->user()->contacts;
+        return authUser()->contacts;
     }
 
     public function getLatestMessage(int $userId): ?Message
     {
         return Message::where(function ($query) use ($userId) {
-            $query->where('sender_id', auth()->user()->id)->where('reciever_id', $userId);
+            $query->where('sender_id', authUser()->id)->where('reciever_id', $userId);
         })
             ->orWhere(function ($query) use ($userId) {
-                $query->where('sender_id', $userId)->where('reciever_id', auth()->user()->id);
+                $query->where('sender_id', $userId)->where('reciever_id', authUser()->id);
             })
             ->latest()
             ->first();

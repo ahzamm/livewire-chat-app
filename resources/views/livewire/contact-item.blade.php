@@ -7,7 +7,7 @@
             window.Echo.leave(window.EchoChannel);
         }
 
-        window.EchoChannel = `one_to_one_chat.{{ auth()->user()->id }}`;
+        window.EchoChannel = `one_to_one_chat.{{ authUser()->id }}`;
         window.Echo.private(window.EchoChannel)
             .listen('MessageSent', (e) => {
                 Livewire.dispatch('recieveMessage', { recievedMessage: e });
